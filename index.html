@@ -631,6 +631,108 @@
         }
 
         /* Projects Grid */
+        /* Projects Grid - Side by Side */
+        .projects-grid-side {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card-detailed {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .project-card-detailed:nth-child(even) {
+            grid-template-columns: 1fr 400px;
+        }
+
+        .project-card-detailed:nth-child(even) .project-image-wrapper {
+            order: 2;
+        }
+
+        .project-card-detailed:nth-child(even) .project-content-detailed {
+            order: 1;
+        }
+
+        .project-image-wrapper {
+            display: block;
+            text-decoration: none;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.06);
+            transition: transform 0.3s;
+        }
+
+        .project-image-wrapper:hover {
+            transform: translateY(-4px);
+        }
+
+        .project-content-detailed {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .project-title-detailed {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #0a0a0a;
+        }
+
+        .project-description-detailed {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #404040;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #737373;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            padding: 0.4rem 0.9rem;
+            background: #fafafa;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            color: #0a0a0a;
+            font-weight: 500;
+        }
+
+        .project-link a {
+            color: #0a0a0a;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: opacity 0.2s;
+        }
+
+        .project-link a:hover {
+            opacity: 0.6;
+        }
+
         .projects-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -871,20 +973,50 @@
         /* Skills Grid */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
         }
 
         .skill-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 16px;
+            background: #fafafa;
+            padding: 1.5rem;
+            border-radius: 8px;
             border: 1px solid rgba(0,0,0,0.06);
-            transition: transform 0.2s;
+            transition: all 0.3s;
         }
 
         .skill-card:hover {
+            border-color: #0a0a0a;
             transform: translateY(-2px);
+        }
+
+        .skill-card-title {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #737373;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .skill-card-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .skill-card-item {
+            font-size: 0.95rem;
+            color: #0a0a0a;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .skill-card-item::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #0a0a0a;
         }
 
         .skill-title {
@@ -963,26 +1095,60 @@
             position: relative;
             overflow: hidden;
             padding: 1rem 0;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .testimonials-track {
             display: flex;
             gap: 1.5rem;
-            padding: 0 2rem;
-            animation: scroll 80s linear infinite;
+            padding: 0 6rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
 
-        .testimonials-track:hover {
-            animation-play-state: paused;
+        .testimonials-track::-webkit-scrollbar {
+            display: none;
         }
 
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
+        .testimonial-scroll-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #0a0a0a;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            z-index: 10;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .testimonial-scroll-arrow:hover {
+            background: #404040;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        .testimonial-scroll-arrow:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .testimonial-scroll-arrow.left {
+            left: 2rem;
+        }
+
+        .testimonial-scroll-arrow.right {
+            right: 2rem;
         }
 
         .testimonial-card {
@@ -1023,7 +1189,7 @@
         .testimonial-avatar {
             width: 48px;
             height: 48px;
-            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+            background: #0a0a0a;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -1088,7 +1254,7 @@
         .recommendation-avatar {
             width: 56px;
             height: 56px;
-            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            background: #0a0a0a;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -1167,51 +1333,25 @@
         }
 
         .universities-container {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
-        }
-
-        .universities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .university-card {
-            background: white;
-            padding: 2rem 1.5rem;
-            border-radius: 16px;
-            border: 1px solid rgba(0,0,0,0.06);
-            transition: transform 0.2s;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
         }
 
-        .university-card:hover {
-            transform: translateY(-2px);
+        .universities-compact-list {
+            font-size: 1rem;
+            color: #404040;
+            line-height: 2;
         }
 
-        .university-logo {
-            width: 56px;
-            height: 56px;
-            background: rgba(0,0,0,0.04);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            font-weight: 600;
+        .universities-compact-list span {
+            display: inline;
         }
 
-        .university-name {
-            font-size: 16px;
-            font-weight: 500;
-            color: #0a0a0a;
-            line-height: 1.4;
+        .universities-compact-list span:not(:last-child)::after {
+            content: ' • ';
+            color: #d4d4d4;
+            margin: 0 0.5rem;
         }
 
         /* Responsive */
@@ -1276,6 +1416,58 @@
 
             .projects-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .projects-grid-side {
+                gap: 3rem;
+            }
+
+            .project-card-detailed {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .project-card-detailed:nth-child(even) {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card-detailed:nth-child(even) .project-image-wrapper {
+                order: 1;
+            }
+
+            .project-card-detailed:nth-child(even) .project-content-detailed {
+                order: 2;
+            }
+
+            .project-title-detailed {
+                font-size: 1.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-scroll-arrow {
+                width: 44px;
+                height: 44px;
+                font-size: 20px;
+            }
+
+            .testimonial-scroll-arrow.left {
+                left: 0.5rem;
+            }
+
+            .testimonial-scroll-arrow.right {
+                right: 0.5rem;
+            }
+
+            .testimonials-track {
+                padding: 0 4rem;
+            }
+
+            .testimonial-card {
+                min-width: 340px;
+                max-width: 340px;
             }
 
             .dna-helix {
@@ -1471,7 +1663,7 @@
                     <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"></path>
                 </svg>
             </a>
-            <a href="mailto:margilgandhi19@gmail.com" class="social-link" title="Email">
+            <a href="/cdn-cgi/l/email-protection#335e5241545a5f54525d575b5a020a73545e525a5f1d505c5e" class="social-link" title="Email">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                     <polyline points="22,6 12,13 2,6"></polyline>
@@ -1612,32 +1804,62 @@
         <div class="section-label">Side Projects</div>
         <h2 class="section-title">Building AI-powered tools</h2>
         
-        <div class="projects-grid">
-            <a href="https://think-again-reflection.lovable.app" target="_blank" class="project-card">
-                <div class="project-image think">
-                    <div class="think-icon"></div>
-                </div>
-                <div class="project-content">
+        <div class="projects-grid-side">
+            <div class="project-card-detailed">
+                <a href="https://think-again-reflection.lovable.app" target="_blank" class="project-image-wrapper">
+                    <div class="project-image think">
+                        <div class="think-icon"></div>
+                    </div>
+                </a>
+                <div class="project-content-detailed">
                     <div class="project-label">Reflection App • 2025</div>
-                    <h3 class="project-title">Think Again</h3>
-                    <p class="project-description">Premium desktop reflection web app with AI-powered 3-step flow across 6 themes. Built on Lovable + Supabase with grounded prompting.</p>
-                </div>
-            </a>
-
-            <a href="https://gentle-aha-moment.lovable.app" target="_blank" class="project-card">
-                <div class="project-image one">
-                    <div class="one-cards">
-                        <div class="one-card"></div>
-                        <div class="one-card"></div>
-                        <div class="one-card"></div>
+                    <h3 class="project-title-detailed">Think Again</h3>
+                    <p class="project-description-detailed">A premium desktop reflection app that asks hard questions across 6 themes—Self, Career, Relationships, Purpose, Identity, and Courage. Uses AI to generate follow-up questions that adapt to your answers, making reflection feel like a conversation with a close friend.</p>
+                    <div class="project-tech">
+                        <div class="tech-label">Built with</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Supabase</span>
+                            <span class="tech-tag">OpenAI GPT-4</span>
+                            <span class="tech-tag">Lovable</span>
+                            <span class="tech-tag">Edge Functions</span>
+                        </div>
+                    </div>
+                    <div class="project-link">
+                        <a href="https://think-again-reflection.lovable.app" target="_blank">Visit project →</a>
                     </div>
                 </div>
-                <div class="project-content">
+            </div>
+
+            <div class="project-card-detailed">
+                <a href="https://gentle-aha-moment.lovable.app" target="_blank" class="project-image-wrapper">
+                    <div class="project-image one">
+                        <div class="one-cards">
+                            <div class="one-card"></div>
+                            <div class="one-card"></div>
+                            <div class="one-card"></div>
+                        </div>
+                    </div>
+                </a>
+                <div class="project-content-detailed">
                     <div class="project-label">Learning App • 2025</div>
-                    <h3 class="project-title">One Thing</h3>
-                    <p class="project-description">AI-powered micro-learning flashcard app with warm, earthy aesthetic for bite-sized knowledge retention. Learn one concept at a time.</p>
+                    <h3 class="project-title-detailed">One Thing</h3>
+                    <p class="project-description-detailed">A micro-learning app that teaches complex concepts in layers—simple, detailed, and expert. Pick from 12 topics, get AI-generated explanations paired with visual images, and learn one thing at a time. Dark cinematic UI keeps you focused.</p>
+                    <div class="project-tech">
+                        <div class="tech-label">Built with</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Supabase</span>
+                            <span class="tech-tag">OpenAI GPT-4</span>
+                            <span class="tech-tag">Pexels API</span>
+                            <span class="tech-tag">Lovable</span>
+                        </div>
+                    </div>
+                    <div class="project-link">
+                        <a href="https://gentle-aha-moment.lovable.app" target="_blank">Visit project →</a>
+                    </div>
                 </div>
-            </a>
+            </div>
         </div>
     </section>
 
@@ -1692,43 +1914,69 @@
         
         <div class="skills-grid">
             <div class="skill-card">
-                <h3 class="skill-title">Product Strategy</h3>
-                <p class="skill-description">0-1 development, roadmap planning, and strategic prioritization from concept to scale</p>
+                <div class="skill-card-title">AI & ML</div>
+                <div class="skill-card-items">
+                    <div class="skill-card-item">LLM Integration (GPT-4)</div>
+                    <div class="skill-card-item">AI Agents & Automation</div>
+                    <div class="skill-card-item">RAG Architectures</div>
+                    <div class="skill-card-item">Prompt Engineering</div>
+                    <div class="skill-card-item">Model Context Protocol</div>
+                </div>
             </div>
 
             <div class="skill-card">
-                <h3 class="skill-title">Cross-Functional Leadership</h3>
-                <p class="skill-description">Leading engineering, legal, operations, and design teams to ship complex products</p>
+                <div class="skill-card-title">Product Craft</div>
+                <div class="skill-card-items">
+                    <div class="skill-card-item">0→1 Product Development</div>
+                    <div class="skill-card-item">Product Strategy & Vision</div>
+                    <div class="skill-card-item">User Research & Testing</div>
+                    <div class="skill-card-item">Feature Prioritization</div>
+                    <div class="skill-card-item">Technical Documentation</div>
+                </div>
             </div>
 
             <div class="skill-card">
-                <h3 class="skill-title">Technical Fluency</h3>
-                <p class="skill-description">Python, SQL, Power BI, AI/LLMs. Building with modern tech stacks and no-code tools</p>
+                <div class="skill-card-title">Engineering</div>
+                <div class="skill-card-items">
+                    <div class="skill-card-item">Python</div>
+                    <div class="skill-card-item">JavaScript & React</div>
+                    <div class="skill-card-item">SQL & Database Design</div>
+                    <div class="skill-card-item">REST APIs</div>
+                    <div class="skill-card-item">HTML/CSS</div>
+                </div>
             </div>
 
             <div class="skill-card">
-                <h3 class="skill-title">User Research</h3>
-                <p class="skill-description">Deep user understanding through interviews, data analysis, and continuous feedback loops</p>
+                <div class="skill-card-title">Data & Analytics</div>
+                <div class="skill-card-items">
+                    <div class="skill-card-item">Power BI Dashboards</div>
+                    <div class="skill-card-item">Product Analytics</div>
+                    <div class="skill-card-item">Performance Metrics</div>
+                    <div class="skill-card-item">A/B Testing</div>
+                    <div class="skill-card-item">Data-Driven Decisions</div>
+                </div>
             </div>
 
             <div class="skill-card">
-                <h3 class="skill-title">Data-Driven Decision Making</h3>
-                <p class="skill-description">Leveraging analytics and metrics to guide product decisions and measure impact</p>
+                <div class="skill-card-title">Tools & Platforms</div>
+                <div class="skill-card-items">
+                    <div class="skill-card-item">Lovable & Supabase</div>
+                    <div class="skill-card-item">Claude Code & Agent.ai</div>
+                    <div class="skill-card-item">OpenAI API</div>
+                    <div class="skill-card-item">GitHub Pages</div>
+                    <div class="skill-card-item">Payment Integration</div>
+                </div>
             </div>
 
             <div class="skill-card">
-                <h3 class="skill-title">Rapid Iteration</h3>
-                <p class="skill-description">Moving fast with small teams, shipping early, and learning from real user feedback</p>
-            </div>
-
-            <div class="skill-card">
-                <h3 class="skill-title">Growth & Scaling</h3>
-                <p class="skill-description">Taking products from MVP to thousands of users with sustainable business models</p>
-            </div>
-
-            <div class="skill-card">
-                <h3 class="skill-title">Mentorship</h3>
-                <p class="skill-description">Guiding 2,500+ students through career development, PM skills, and job search</p>
+                <div class="skill-card-title">Design & Collaboration</div>
+                <div class="skill-card-items">
+                    <div class="skill-card-item">Figma (UI/UX)</div>
+                    <div class="skill-card-item">Jira & Confluence</div>
+                    <div class="skill-card-item">Interactive Prototypes</div>
+                    <div class="skill-card-item">Wireframing</div>
+                    <div class="skill-card-item">Salesforce & CRM</div>
+                </div>
             </div>
         </div>
     </section>
@@ -1793,39 +2041,15 @@
             <div class="section-label">Speaking Engagements</div>
             <h2 class="section-title">Universities & Communities</h2>
             
-            <div class="universities-grid">
-                <div class="university-card">
-                    <div class="university-logo">🎓</div>
-                    <div class="university-name">Texas A&M</div>
-                </div>
-                <div class="university-card">
-                    <div class="university-logo">🏛️</div>
-                    <div class="university-name">Duke</div>
-                </div>
-                <div class="university-card">
-                    <div class="university-logo">📚</div>
-                    <div class="university-name">Carlson School of Management</div>
-                </div>
-                <div class="university-card">
-                    <div class="university-logo">🎯</div>
-                    <div class="university-name">Purdue</div>
-                </div>
-                <div class="university-card">
-                    <div class="university-logo">🔬</div>
-                    <div class="university-name">UIUC</div>
-                </div>
-                <div class="university-card">
-                    <div class="university-logo">🗽</div>
-                    <div class="university-name">NYU</div>
-                </div>
-                <div class="university-card">
-                    <div class="university-logo">🌉</div>
-                    <div class="university-name">SJSU</div>
-                </div>
-                <div class="university-card">
-                    <div class="university-logo">🌲</div>
-                    <div class="university-name">University of Washington</div>
-                </div>
+            <div class="universities-compact-list">
+                <span>Texas A&M University</span>
+                <span>Duke University</span>
+                <span>Carlson School of Management</span>
+                <span>Purdue University</span>
+                <span>University of Illinois Urbana-Champaign</span>
+                <span>New York University</span>
+                <span>San Jose State University</span>
+                <span>University of Washington</span>
             </div>
         </div>
     </section>
@@ -1852,7 +2076,9 @@
         </div>
         
         <div class="testimonials-scroll-container">
-            <div class="testimonials-track">
+            <button class="testimonial-scroll-arrow left" onclick="scrollTestimonials('left')">←</button>
+            <button class="testimonial-scroll-arrow right" onclick="scrollTestimonials('right')">→</button>
+            <div class="testimonials-track" id="testimonials-track">
                 <!-- First set of testimonials -->
                 <div class="testimonial-card">
                     <div class="testimonial-quote">It was a pleasure attending your session at EMSA's Class to Industry: Career Insights Workshop. I truly appreciated your practical insights on application strategy, networking, and interview preparation. Thank you for sharing your experience and guidance.</div>
@@ -2390,7 +2616,7 @@
     <!-- Contact -->
     <section class="contact" id="contact">
         <h2>Let's build something together</h2>
-        <a href="mailto:margilgandhi19@gmail.com" class="hero-cta">Get in touch</a>
+        <a href="/cdn-cgi/l/email-protection#cba6aab9aca2a7acaaa5afa3a2faf28baca6aaa2a7e5a8a4a6" class="hero-cta">Get in touch</a>
     </section>
 
     <!-- Footer -->
@@ -2399,11 +2625,11 @@
         <div class="footer-links">
             <a href="https://linkedin.com/in/margilgandhi" target="_blank">LinkedIn</a>
             <a href="https://github.com" target="_blank">GitHub</a>
-            <a href="mailto:margilgandhi19@gmail.com">Email</a>
+            <a href="/cdn-cgi/l/email-protection#ea878b988d83868d8b848e8283dbd3aa8d878b8386c4898587">Email</a>
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', function(e) {
@@ -2585,6 +2811,20 @@
             setTimeout(typeEffect, typingSpeed);
         }
         
+        // Testimonials scroll navigation
+        function scrollTestimonials(direction) {
+            const track = document.getElementById('testimonials-track');
+            const cardWidth = 420; // Card width
+            const gap = 24; // 1.5rem gap
+            const scrollAmount = (cardWidth + gap) * 3; // Scroll 3 cards at a time
+            
+            if (direction === 'left') {
+                track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            } else {
+                track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        }
+
         // Start the typing effect
         if (changingTextElement) {
             typeEffect();
