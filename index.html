@@ -635,20 +635,21 @@
         .projects-grid-side {
             display: flex;
             flex-direction: column;
-            gap: 4rem;
+            gap: 8rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .project-card-detailed {
             display: grid;
-            grid-template-columns: 400px 1fr;
+            grid-template-columns: 600px 1fr;
             gap: 3rem;
-            align-items: start;
+            align-items: center;
+            margin-bottom: 2rem;
         }
 
         .project-card-detailed:nth-child(even) {
-            grid-template-columns: 1fr 400px;
+            grid-template-columns: 1fr 600px;
         }
 
         .project-card-detailed:nth-child(even) .project-image-wrapper {
@@ -660,16 +661,105 @@
         }
 
         .project-image-wrapper {
-            display: block;
-            text-decoration: none;
+            position: relative;
             border-radius: 16px;
             overflow: hidden;
             border: 1px solid rgba(0,0,0,0.06);
             transition: transform 0.3s;
+            background: #fafafa;
+            aspect-ratio: 4 / 3;
         }
 
         .project-image-wrapper:hover {
             transform: translateY(-4px);
+        }
+
+        .project-carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .project-carousel-track {
+            display: flex;
+            transition: transform 0.4s ease;
+            height: 100%;
+        }
+
+        .project-carousel-track a {
+            flex-shrink: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .project-carousel-track img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(10, 10, 10, 0.8);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            z-index: 10;
+            transition: all 0.3s;
+            opacity: 0;
+        }
+
+        .project-image-wrapper:hover .project-carousel-arrow {
+            opacity: 1;
+        }
+
+        .project-carousel-arrow:hover {
+            background: rgba(10, 10, 10, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .project-carousel-arrow.left {
+            left: 0.75rem;
+        }
+
+        .project-carousel-arrow.right {
+            right: 0.75rem;
+        }
+
+        .project-carousel-dots {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+
+        .project-carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .project-carousel-dot.active {
+            background: white;
+            width: 24px;
+            border-radius: 4px;
         }
 
         .project-content-detailed {
@@ -755,112 +845,6 @@
 
         .project-card:hover {
             transform: translateY(-4px);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 400px;
-            background: #e5e5e5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .project-image.think {
-            background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
-            position: relative;
-        }
-
-        .think-icon {
-            width: 200px;
-            height: 260px;
-            background: rgba(255,200,190,0.3);
-            border-radius: 16px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .think-icon::before {
-            content: '';
-            width: 170px;
-            height: 220px;
-            background: white;
-            border-radius: 12px;
-            position: absolute;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-        }
-
-        .think-icon::after {
-            content: '';
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, #F59E0B, #EF4444);
-            border-radius: 2px;
-            position: absolute;
-            z-index: 1;
-        }
-
-        .project-image.one {
-            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
-            position: relative;
-        }
-
-        .one-cards {
-            position: relative;
-            width: 300px;
-            height: 300px;
-        }
-
-        .one-card {
-            position: absolute;
-            width: 160px;
-            height: 210px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-        }
-
-        .one-card:nth-child(1) {
-            transform: translate(-70px, -30px) rotate(-8deg);
-            opacity: 0.85;
-            background: rgba(209,250,229,0.95);
-        }
-
-        .one-card:nth-child(2) {
-            transform: translate(0, 0) rotate(2deg);
-            z-index: 2;
-        }
-
-        .one-card:nth-child(3) {
-            transform: translate(70px, 30px) rotate(10deg);
-            opacity: 0.85;
-            background: rgba(209,250,229,0.95);
-        }
-
-        .project-content {
-            padding: 2rem 2.5rem;
-        }
-
-        .project-label {
-            font-size: 14px;
-            color: #999;
-            margin-bottom: 0.75rem;
-        }
-
-        .project-title {
-            font-size: 2rem;
-            font-weight: 500;
-            letter-spacing: -0.015em;
-            margin-bottom: 0.75rem;
-            color: #0a0a0a;
-        }
-
-        .project-description {
-            font-size: 15px;
-            color: #666;
-            line-height: 1.6;
         }
 
         /* Values Section - DNA Helix with Black Cards */
@@ -1663,15 +1647,10 @@
                     <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"></path>
                 </svg>
             </a>
-            <a href="/cdn-cgi/l/email-protection#335e5241545a5f54525d575b5a020a73545e525a5f1d505c5e" class="social-link" title="Email">
+            <a href="mailto:margilgandhi19@gmail.com" class="social-link" title="Email">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                     <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
-            </a>
-            <a href="https://github.com" target="_blank" class="social-link" title="GitHub">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                 </svg>
             </a>
         </div>
@@ -1806,13 +1785,16 @@
         
         <div class="projects-grid-side">
             <div class="project-card-detailed">
-                <a href="https://think-again-reflection.lovable.app" target="_blank" class="project-image-wrapper">
-                    <div class="project-image think">
-                        <div class="think-icon"></div>
+                <div class="project-image-wrapper">
+                    <div class="project-carousel">
+                        <div class="project-carousel-track" id="think-again-track">
+                            <a href="https://think-again-reflection.lovable.app" target="_blank">
+                                <img src="think-again.png" alt="Think Again - Better questions, not faster answers">
+                            </a>
+                        </div>
                     </div>
-                </a>
+                </div>
                 <div class="project-content-detailed">
-                    <div class="project-label">Reflection App • 2025</div>
                     <h3 class="project-title-detailed">Think Again</h3>
                     <p class="project-description-detailed">A premium desktop reflection app that asks hard questions across 6 themes—Self, Career, Relationships, Purpose, Identity, and Courage. Uses AI to generate follow-up questions that adapt to your answers, making reflection feel like a conversation with a close friend.</p>
                     <div class="project-tech">
@@ -1832,17 +1814,16 @@
             </div>
 
             <div class="project-card-detailed">
-                <a href="https://gentle-aha-moment.lovable.app" target="_blank" class="project-image-wrapper">
-                    <div class="project-image one">
-                        <div class="one-cards">
-                            <div class="one-card"></div>
-                            <div class="one-card"></div>
-                            <div class="one-card"></div>
+                <div class="project-image-wrapper">
+                    <div class="project-carousel">
+                        <div class="project-carousel-track" id="one-thing-track">
+                            <a href="https://gentle-aha-moment.lovable.app" target="_blank">
+                                <img src="one-thing-hero.png" alt="One Thing - A journey beyond the known">
+                            </a>
                         </div>
                     </div>
-                </a>
+                </div>
                 <div class="project-content-detailed">
-                    <div class="project-label">Learning App • 2025</div>
                     <h3 class="project-title-detailed">One Thing</h3>
                     <p class="project-description-detailed">A micro-learning app that teaches complex concepts in layers—simple, detailed, and expert. Pick from 12 topics, get AI-generated explanations paired with visual images, and learn one thing at a time. Dark cinematic UI keeps you focused.</p>
                     <div class="project-tech">
@@ -2616,7 +2597,7 @@
     <!-- Contact -->
     <section class="contact" id="contact">
         <h2>Let's build something together</h2>
-        <a href="/cdn-cgi/l/email-protection#cba6aab9aca2a7acaaa5afa3a2faf28baca6aaa2a7e5a8a4a6" class="hero-cta">Get in touch</a>
+        <a href="mailto:margilgandhi19@gmail.com" class="hero-cta">Get in touch</a>
     </section>
 
     <!-- Footer -->
@@ -2624,12 +2605,11 @@
         <div class="footer-copy">© 2026 Margil Gandhi</div>
         <div class="footer-links">
             <a href="https://linkedin.com/in/margilgandhi" target="_blank">LinkedIn</a>
-            <a href="https://github.com" target="_blank">GitHub</a>
-            <a href="/cdn-cgi/l/email-protection#ea878b988d83868d8b848e8283dbd3aa8d878b8386c4898587">Email</a>
+            <a href="mailto:margilgandhi19@gmail.com">Email</a>
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', function(e) {
@@ -2823,6 +2803,34 @@
             } else {
                 track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
             }
+        }
+
+        // Project carousel navigation
+        let projectCarouselStates = {
+            'one-thing': { currentIndex: 0, totalSlides: 3 }
+        };
+
+        function scrollProjectCarousel(projectId, direction) {
+            const state = projectCarouselStates[projectId];
+            const newIndex = state.currentIndex + direction;
+            
+            if (newIndex >= 0 && newIndex < state.totalSlides) {
+                goToProjectSlide(projectId, newIndex);
+            }
+        }
+
+        function goToProjectSlide(projectId, index) {
+            const track = document.getElementById(`${projectId}-track`);
+            const dots = document.getElementById(`${projectId}-dots`).children;
+            const state = projectCarouselStates[projectId];
+            
+            state.currentIndex = index;
+            track.style.transform = `translateX(-${index * 100}%)`;
+            
+            // Update dots
+            Array.from(dots).forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
         }
 
         // Start the typing effect
